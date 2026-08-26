@@ -1,0 +1,43 @@
+### Full digital business card
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{
+  "query": "query Profile { profile { fullName headline location summary githubUrl skills { name category level years } projects { title description stack highlights } experiences { company role startedAt finishedAt description stack } } }"
+}
+
+### Skill filter
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{
+  "query": "query Skills($category: String) { skills(category: $category) { name category level years } }",
+  "variables": {
+    "category": "Backend"
+  }
+}
+
+### Live interview change
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation UpdateProfile($input: UpdateProfileInput!) { updateProfile(input: $input) { fullName headline location } }",
+  "variables": {
+    "input": {
+      "headline": "Junior+ TypeScript Backend Developer",
+      "location": "Remote"
+    }
+  }
+}
+
+### S3-compatible resume target metadata
+POST http://localhost:3000/graphql
+Content-Type: application/json
+
+{
+  "query": "query ResumeUploadTarget($fileName: String!) { resumeUploadTarget(fileName: $fileName) { bucket key endpoint publicUrl } }",
+  "variables": {
+    "fileName": "resume.pdf"
+  }
+}
