@@ -1,0 +1,97 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Experience {
+  company: String!
+  description: String!
+  finishedAt: DateTime
+  id: ID!
+  role: String!
+  stack: [String!]!
+  startedAt: DateTime!
+}
+
+type Mutation {
+  """Updates public profile fields during the live interview exercise."""
+  updateProfile(input: UpdateProfileInput!): Profile!
+}
+
+type Profile {
+  email: String!
+  experiences: [Experience!]!
+  fullName: String!
+  githubUrl: String
+  headline: String!
+  id: ID!
+  location: String!
+  phone: String
+  projects: [Project!]!
+  resumeAsset: String
+  skills: [Skill!]!
+  summary: String!
+  telegramUrl: String
+}
+
+type Project {
+  description: String!
+  highlights: [String!]!
+  id: ID!
+  sourceUrl: String
+  stack: [String!]!
+  title: String!
+  url: String
+}
+
+type Query {
+  """
+  Returns the full digital business card with skills, projects and experience.
+  """
+  profile: Profile!
+
+  """Returns S3-compatible upload target metadata for a resume asset."""
+  resumeUploadTarget(fileName: String!): UploadUrl!
+
+  """
+  Returns profile skills. Optional category filter matches a skill category.
+  """
+  skills(category: String): [Skill!]!
+}
+
+type Skill {
+  category: String!
+  id: ID!
+  level: SkillLevel!
+  name: String!
+  years: Float
+}
+
+enum SkillLevel {
+  BEGINNER
+  JUNIOR
+  JUNIOR_PLUS
+  MIDDLE
+}
+
+input UpdateProfileInput {
+  email: String
+  fullName: String
+  githubUrl: String
+  headline: String
+  location: String
+  phone: String
+  summary: String
+  telegramUrl: String
+}
+
+type UploadUrl {
+  bucket: String!
+  endpoint: String!
+  key: String!
+  publicUrl: String!
+}

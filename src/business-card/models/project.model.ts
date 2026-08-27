@@ -11,10 +11,10 @@ export class Project {
   @Field()
   description: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   url?: string | null;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   sourceUrl?: string | null;
 
   @Field(() => [String])

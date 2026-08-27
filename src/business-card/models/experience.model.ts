@@ -11,10 +11,10 @@ export class Experience {
   @Field()
   role: string;
 
-  @Field()
+  @Field(() => Date)
   startedAt: Date;
 
-  @Field({ nullable: true })
+  @Field(() => Date, { nullable: true })
   finishedAt?: Date | null;
 
   @Field()
