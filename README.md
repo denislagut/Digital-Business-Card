@@ -27,6 +27,21 @@ npm run db:seed
 npm run start:dev
 ```
 
+If package installation hangs behind VPN, try:
+
+```bash
+npm cache verify
+npm install --no-audit --no-fund --fetch-retries=5 --fetch-retry-mintimeout=20000 --fetch-retry-maxtimeout=120000
+```
+
+If `registry.npmjs.org` keeps timing out, use a mirror for one install:
+
+```bash
+npm install --no-audit --no-fund --registry=https://registry.npmmirror.com
+```
+
+If Windows leaves a partial `node_modules` after `EPERM`, close editors/terminals that may hold files, then remove `node_modules` and run `npm install` again.
+
 GraphQL playground: http://localhost:3000/graphql
 
 CockroachDB console: http://localhost:8080
