@@ -59,6 +59,7 @@ function App() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [showAllSkills, setShowAllSkills] = useState(false);
 
   useEffect(() => {
     async function loadProfile() {
@@ -150,6 +151,9 @@ function App() {
     return <main className="page state">Profile not found</main>;
   }
 
+  const visibleSkills = showAllSkills ? profile.skills : profile.skills.slice(0, 5);
+  const hasHiddenSkills = profile.skills.length > 5;
+
   return (
     <main className="page">
       <section className="hero">
@@ -174,7 +178,7 @@ function App() {
       <section className="section">
         <h2>Skills</h2>
         <div className="skillGrid">
-          {profile.skills.map((skill) => (
+          {visibleSkills.map((skill) => (
             <article className="card" key={skill.name}>
               <strong>{skill.name}</strong>
               <span>{skill.category}</span>
@@ -184,6 +188,15 @@ function App() {
             </article>
           ))}
         </div>
+        {hasHiddenSkills && (
+          <button
+            className="toggleButton"
+            type="button"
+            onClick={() => setShowAllSkills((current) => !current)}
+          >
+            {showAllSkills ? 'Скрыть' : 'Показать все'}
+          </button>
+        )}
       </section>
 
       <section className="section">
