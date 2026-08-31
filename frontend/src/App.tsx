@@ -24,6 +24,23 @@ type Experience = {
   stack: string[];
 };
 
+type Education = {
+  institution: string;
+  degree: string;
+  field: string;
+  startedAt: string | null;
+  finishedAt: string | null;
+  description: string | null;
+};
+
+type Certification = {
+  title: string;
+  issuer: string;
+  issuedAt: string | null;
+  credentialUrl: string | null;
+  description: string | null;
+};
+
 type Profile = {
   fullName: string;
   headline: string;
@@ -34,6 +51,8 @@ type Profile = {
   skills: Skill[];
   projects: Project[];
   experiences: Experience[];
+  educations: Education[];
+  certifications: Certification[];
 };
 
 function App() {
@@ -78,6 +97,21 @@ function App() {
                     finishedAt
                     description
                     stack
+                  }
+                  educations {
+                    institution
+                    degree
+                    field
+                    startedAt
+                    finishedAt
+                    description
+                  }
+                  certifications {
+                    title
+                    issuer
+                    issuedAt
+                    credentialUrl
+                    description
                   }
                 }
               }
@@ -190,6 +224,42 @@ function App() {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="section split">
+        <div>
+          <h2>Education</h2>
+          <div className="list">
+            {profile.educations.map((education) => (
+              <article className="card" key={`${education.institution}-${education.field}`}>
+                <h3>{education.institution}</h3>
+                <p className="meta">{education.degree}</p>
+                <p>{education.field}</p>
+                {education.description && <p>{education.description}</p>}
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h2>Certifications</h2>
+          <div className="list">
+            {profile.certifications.map((certification) => (
+              <article className="card" key={`${certification.issuer}-${certification.title}`}>
+                <h3>{certification.title}</h3>
+                <p className="meta">{certification.issuer}</p>
+                {certification.description && <p>{certification.description}</p>}
+                {certification.credentialUrl && (
+                  <div className="contacts compact">
+                    <a href={certification.credentialUrl} target="_blank" rel="noreferrer">
+                      Credential
+                    </a>
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </main>

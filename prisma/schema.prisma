@@ -8,31 +8,33 @@ datasource db {
 }
 
 model Profile {
-  id           String       @id @default(uuid())
-  fullName     String
-  headline     String
-  location     String
-  summary      String
-  email        String
-  phone        String?
-  githubUrl    String?
-  telegramUrl  String?
-  resumeAsset  String?
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
-  skills       Skill[]
-  projects     Project[]
-  experiences  Experience[]
+  id             String          @id @default(uuid())
+  fullName       String
+  headline       String
+  location       String
+  summary        String
+  email          String
+  phone          String?
+  githubUrl      String?
+  telegramUrl    String?
+  resumeAsset    String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  skills         Skill[]
+  projects       Project[]
+  experiences    Experience[]
+  educations     Education[]
+  certifications Certification[]
 }
 
 model Skill {
-  id        String    @id @default(uuid())
+  id        String     @id @default(uuid())
   name      String
   category  String
   level     SkillLevel
   years     Float?
   profileId String
-  profile   Profile   @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profile   Profile    @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
   @@unique([profileId, name])
 }
@@ -61,9 +63,31 @@ model Experience {
   profile     Profile   @relation(fields: [profileId], references: [id], onDelete: Cascade)
 }
 
+model Education {
+  id          String    @id @default(uuid())
+  institution String
+  degree      String
+  field       String
+  startedAt   DateTime?
+  finishedAt  DateTime?
+  description String?
+  profileId   String
+  profile     Profile   @relation(fields: [profileId], references: [id], onDelete: Cascade)
+}
+
+model Certification {
+  id            String    @id @default(uuid())
+  title         String
+  issuer        String
+  issuedAt      DateTime?
+  credentialUrl String?
+  description   String?
+  profileId     String
+  profile       Profile   @relation(fields: [profileId], references: [id], onDelete: Cascade)
+}
+
 enum SkillLevel {
-  BEGINNER
-  JUNIOR
-  JUNIOR_PLUS
-  MIDDLE
+  FAMILIAR
+  PRACTICAL
+  PROFICIENT
 }

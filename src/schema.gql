@@ -2,10 +2,29 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Certification {
+  credentialUrl: String
+  description: String
+  id: ID!
+  issuedAt: DateTime
+  issuer: String!
+  title: String!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
+
+type Education {
+  degree: String!
+  description: String
+  field: String!
+  finishedAt: DateTime
+  id: ID!
+  institution: String!
+  startedAt: DateTime
+}
 
 type Experience {
   company: String!
@@ -23,6 +42,8 @@ type Mutation {
 }
 
 type Profile {
+  certifications: [Certification!]!
+  educations: [Education!]!
   email: String!
   experiences: [Experience!]!
   fullName: String!
@@ -72,10 +93,9 @@ type Skill {
 }
 
 enum SkillLevel {
-  BEGINNER
-  JUNIOR
-  JUNIOR_PLUS
-  MIDDLE
+  FAMILIAR
+  PRACTICAL
+  PROFICIENT
 }
 
 input UpdateProfileInput {

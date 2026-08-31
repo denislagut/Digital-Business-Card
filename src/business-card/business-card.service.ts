@@ -7,6 +7,8 @@ const profileInclude = {
   skills: { orderBy: [{ category: 'asc' }, { name: 'asc' }] },
   projects: { orderBy: { title: 'asc' } },
   experiences: { orderBy: { startedAt: 'desc' } },
+  educations: { orderBy: { finishedAt: 'desc' } },
+  certifications: { orderBy: { issuedAt: 'desc' } },
 } satisfies Prisma.ProfileInclude;
 
 @Injectable()

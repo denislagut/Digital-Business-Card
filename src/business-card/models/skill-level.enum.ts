@@ -1,10 +1,9 @@
 import { registerEnumType } from '@nestjs/graphql';
 
 export enum SkillLevel {
-  BEGINNER = 'BEGINNER',
-  JUNIOR = 'JUNIOR',
-  JUNIOR_PLUS = 'JUNIOR_PLUS',
-  MIDDLE = 'MIDDLE',
+  FAMILIAR = 'FAMILIAR',
+  PRACTICAL = 'PRACTICAL',
+  PROFICIENT = 'PROFICIENT',
 }
 
 registerEnumType(SkillLevel, {

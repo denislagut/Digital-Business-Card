@@ -1,4 +1,6 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Certification } from './certification.model';
+import { Education } from './education.model';
 import { Experience } from './experience.model';
 import { Project } from './project.model';
 import { Skill } from './skill.model';
@@ -43,4 +45,10 @@ export class Profile {
 
   @Field(() => [Experience])
   experiences: Experience[];
+
+  @Field(() => [Education])
+  educations: Education[];
+
+  @Field(() => [Certification])
+  certifications: Certification[];
 }

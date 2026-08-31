@@ -3,7 +3,7 @@ POST http://localhost:3000/graphql
 Content-Type: application/json
 
 {
-  "query": "query Profile { profile { fullName headline location summary githubUrl skills { name category level years } projects { title description stack highlights } experiences { company role startedAt finishedAt description stack } } }"
+  "query": "query Profile { profile { fullName headline location summary githubUrl skills { name category level years } projects { title description stack highlights } experiences { company role startedAt finishedAt description stack } educations { institution degree field startedAt finishedAt description } certifications { title issuer issuedAt credentialUrl description } } }"
 }
 
 ### Skill filter

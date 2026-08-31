@@ -157,6 +157,16 @@ h3 {
   align-self: end;
 }
 
+.contacts.compact {
+  margin-top: 18px;
+}
+
+.contacts.compact a {
+  min-height: 36px;
+  padding: 0 14px;
+  font-size: 14px;
+}
+
 .contacts a {
   display: inline-flex;
   min-height: 44px;
@@ -195,6 +205,12 @@ h3 {
 .list {
   display: grid;
   gap: 18px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
 }
 
 .card {
@@ -337,5 +353,9 @@ h3 {
 
   .contacts a {
     width: 100%;
+  }
+
+  .split {
+    grid-template-columns: 1fr;
   }
 }

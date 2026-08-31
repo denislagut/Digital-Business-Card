@@ -78,6 +78,21 @@ query Profile {
       description
       stack
     }
+    educations {
+      institution
+      degree
+      field
+      startedAt
+      finishedAt
+      description
+    }
+    certifications {
+      title
+      issuer
+      issuedAt
+      credentialUrl
+      description
+    }
   }
 }
 ```
@@ -114,4 +129,4 @@ query ResumeUploadTarget {
 
 ## Notes
 
-The project is intentionally small but production-shaped: code-first GraphQL schema, Prisma data model, Dockerized dependencies, validation pipe and clear seed data. The public profile values can be edited during the live screen-sharing part of the interview.
+The project is intentionally small but production-shaped: code-first GraphQL schema, Prisma data model, Dockerized dependencies, validation pipe and clear seed data. Work experience, education and certifications are separate domain entities, so the business card does not mix university or credentials with employment history. The public profile values can be edited during the live screen-sharing part of the interview.
