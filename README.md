@@ -62,7 +62,6 @@ query Profile {
       name
       category
       level
-      years
     }
     projects {
       title
@@ -74,7 +73,7 @@ query Profile {
       company
       role
       startedAt
-      finishedAt
+      endedAt
       description
       stack
     }
@@ -83,7 +82,7 @@ query Profile {
       degree
       field
       startedAt
-      finishedAt
+      endedAt
       description
     }
     certifications {
@@ -91,6 +90,7 @@ query Profile {
       issuer
       issuedAt
       credentialUrl
+      assetUrl
       description
     }
   }
@@ -129,4 +129,4 @@ query ResumeUploadTarget {
 
 ## Notes
 
-The project is intentionally small but production-shaped: code-first GraphQL schema, Prisma data model, Dockerized dependencies, validation pipe and clear seed data. Work experience, education and certifications are separate domain entities, so the business card does not mix university or credentials with employment history. The public profile values can be edited during the live screen-sharing part of the interview.
+The project is intentionally small but production-shaped: code-first GraphQL schema, Prisma data model, Dockerized dependencies, validation pipe and clear seed data. Work experience, education and certifications are separate domain entities, skill levels describe usage depth instead of seniority labels, and `years` remains nullable in Prisma to avoid false precision in the public card. The public profile values can be edited during the live screen-sharing part of the interview.

@@ -3,6 +3,7 @@
 # ------------------------------------------------------
 
 type Certification {
+  assetUrl: String
   credentialUrl: String
   description: String
   id: ID!
@@ -19,8 +20,8 @@ scalar DateTime
 type Education {
   degree: String!
   description: String
+  endedAt: DateTime
   field: String!
-  finishedAt: DateTime
   id: ID!
   institution: String!
   startedAt: DateTime
@@ -29,7 +30,7 @@ type Education {
 type Experience {
   company: String!
   description: String!
-  finishedAt: DateTime
+  endedAt: DateTime
   id: ID!
   role: String!
   stack: [String!]!
@@ -89,7 +90,6 @@ type Skill {
   id: ID!
   level: SkillLevel!
   name: String!
-  years: Float
 }
 
 enum SkillLevel {

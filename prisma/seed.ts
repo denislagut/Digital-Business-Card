@@ -17,20 +17,20 @@ async function main() {
       resumeAsset: 's3://digital-card-assets/resume.pdf',
       skills: {
         create: [
-          { name: 'TypeScript', category: 'Language', level: SkillLevel.PROFICIENT, years: 1.5 },
-          { name: 'Node.js', category: 'Runtime', level: SkillLevel.PRACTICAL, years: 1.5 },
-          { name: 'NestJS', category: 'Backend', level: SkillLevel.PRACTICAL, years: 1 },
-          { name: 'ASP.NET Core', category: 'Backend', level: SkillLevel.PROFICIENT, years: 1 },
-          { name: 'GraphQL', category: 'API', level: SkillLevel.PRACTICAL, years: 0.5 },
-          { name: 'Prisma', category: 'ORM', level: SkillLevel.PRACTICAL, years: 1 },
-          { name: 'PostgreSQL', category: 'Database', level: SkillLevel.PROFICIENT, years: 1.5 },
-          { name: 'CockroachDB', category: 'Database', level: SkillLevel.FAMILIAR, years: 0.3 },
-          { name: 'Docker', category: 'DevOps', level: SkillLevel.PRACTICAL, years: 1 },
-          { name: 'Git', category: 'Tooling', level: SkillLevel.PROFICIENT, years: 2 },
-          { name: 'S3 storage', category: 'Cloud', level: SkillLevel.FAMILIAR, years: 0.5 },
-          { name: 'Claude Code', category: 'AI tooling', level: SkillLevel.PRACTICAL, years: 0.3 },
-          { name: 'C++', category: 'Language', level: SkillLevel.FAMILIAR, years: 0.5 },
-          { name: 'PHP', category: 'Language', level: SkillLevel.FAMILIAR, years: 0.5 }
+          { name: 'TypeScript', category: 'Language', level: SkillLevel.PROFICIENT },
+          { name: 'Node.js', category: 'Runtime', level: SkillLevel.PRACTICAL },
+          { name: 'NestJS', category: 'Backend', level: SkillLevel.PRACTICAL },
+          { name: 'ASP.NET Core', category: 'Backend', level: SkillLevel.PROFICIENT },
+          { name: 'GraphQL', category: 'API', level: SkillLevel.PRACTICAL },
+          { name: 'Prisma', category: 'ORM', level: SkillLevel.PRACTICAL },
+          { name: 'PostgreSQL', category: 'Database', level: SkillLevel.PROFICIENT },
+          { name: 'CockroachDB', category: 'Database', level: SkillLevel.FAMILIAR },
+          { name: 'Docker', category: 'DevOps', level: SkillLevel.PRACTICAL },
+          { name: 'Git', category: 'Tooling', level: SkillLevel.PROFICIENT },
+          { name: 'S3 storage', category: 'Cloud', level: SkillLevel.FAMILIAR },
+          { name: 'Claude Code', category: 'AI tooling', level: SkillLevel.PRACTICAL },
+          { name: 'C++', category: 'Language', level: SkillLevel.FAMILIAR },
+          { name: 'PHP', category: 'Language', level: SkillLevel.FAMILIAR }
         ]
       },
       projects: {
@@ -56,6 +56,7 @@ async function main() {
             company: 'Pet projects and freelance practice',
             role: 'Backend Developer',
             startedAt: new Date('2024-01-01T00:00:00.000Z'),
+            endedAt: null,
             description:
               'Built API services, integrated databases, prepared Docker environments and practiced production-style backend workflows.',
             stack: ['TypeScript', 'Node.js', 'NestJS', 'PostgreSQL', 'Prisma', 'Docker']
@@ -68,7 +69,8 @@ async function main() {
             institution: 'BSTU / BGTU',
             degree: 'Higher education',
             field: 'Software engineering / Computer science',
-            startedAt: new Date('2021-09-01T00:00:00.000Z'),
+            startedAt: new Date('2022-09-01T00:00:00.000Z'),
+            endedAt: new Date('2026-06-30T00:00:00.000Z'),
             description:
               'Technical education foundation with software development, algorithms, databases and engineering practice.'
           }
@@ -80,6 +82,7 @@ async function main() {
             title: 'Backend development practice',
             issuer: 'Self-study and project work',
             issuedAt: new Date('2025-01-01T00:00:00.000Z'),
+            assetUrl: 's3://digital-card-assets/certificates/backend-practice.pdf',
             description:
               'Practical backend portfolio work with typed APIs, database modeling, Docker environments and Git workflow.'
           }

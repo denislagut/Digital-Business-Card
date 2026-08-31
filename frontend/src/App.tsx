@@ -5,7 +5,6 @@ type Skill = {
   name: string;
   category: string;
   level: string;
-  years: number | null;
 };
 
 type Project = {
@@ -19,7 +18,7 @@ type Experience = {
   company: string;
   role: string;
   startedAt: string;
-  finishedAt: string | null;
+  endedAt: string | null;
   description: string;
   stack: string[];
 };
@@ -29,7 +28,7 @@ type Education = {
   degree: string;
   field: string;
   startedAt: string | null;
-  finishedAt: string | null;
+  endedAt: string | null;
   description: string | null;
 };
 
@@ -38,6 +37,7 @@ type Certification = {
   issuer: string;
   issuedAt: string | null;
   credentialUrl: string | null;
+  assetUrl: string | null;
   description: string | null;
 };
 
@@ -82,7 +82,6 @@ function App() {
                     name
                     category
                     level
-                    years
                   }
                   projects {
                     title
@@ -94,7 +93,7 @@ function App() {
                     company
                     role
                     startedAt
-                    finishedAt
+                    endedAt
                     description
                     stack
                   }
@@ -103,7 +102,7 @@ function App() {
                     degree
                     field
                     startedAt
-                    finishedAt
+                    endedAt
                     description
                   }
                   certifications {
@@ -111,6 +110,7 @@ function App() {
                     issuer
                     issuedAt
                     credentialUrl
+                    assetUrl
                     description
                   }
                 }
@@ -180,7 +180,6 @@ function App() {
               <span>{skill.category}</span>
               <small>
                 {skill.level}
-                {skill.years ? ` / ${skill.years}y` : ''}
               </small>
             </article>
           ))}
@@ -215,7 +214,9 @@ function App() {
           {profile.experiences.map((experience) => (
             <article className="card" key={`${experience.company}-${experience.role}`}>
               <h3>{experience.role}</h3>
-              <p className="meta">{experience.company}</p>
+              <p className="meta">
+                {experience.company} / {formatPeriod(experience.startedAt, experience.endedAt)}
+              </p>
               <p>{experience.description}</p>
               <div className="tags">
                 {experience.stack.map((tech) => (
@@ -234,7 +235,9 @@ function App() {
             {profile.educations.map((education) => (
               <article className="card" key={`${education.institution}-${education.field}`}>
                 <h3>{education.institution}</h3>
-                <p className="meta">{education.degree}</p>
+                <p className="meta">
+                  {education.degree} / {formatPeriod(education.startedAt, education.endedAt)}
+                </p>
                 <p>{education.field}</p>
                 {education.description && <p>{education.description}</p>}
               </article>
@@ -248,11 +251,14 @@ function App() {
             {profile.certifications.map((certification) => (
               <article className="card" key={`${certification.issuer}-${certification.title}`}>
                 <h3>{certification.title}</h3>
-                <p className="meta">{certification.issuer}</p>
+                <p className="meta">
+                  {certification.issuer}
+                  {certification.issuedAt ? ` / ${formatYear(certification.issuedAt)}` : ''}
+                </p>
                 {certification.description && <p>{certification.description}</p>}
-                {certification.credentialUrl && (
+                {(certification.credentialUrl || certification.assetUrl) && (
                   <div className="contacts compact">
-                    <a href={certification.credentialUrl} target="_blank" rel="noreferrer">
+                    <a href={certification.credentialUrl ?? certification.assetUrl ?? '#'} target="_blank" rel="noreferrer">
                       Credential
                     </a>
                   </div>
@@ -264,6 +270,17 @@ function App() {
       </section>
     </main>
   );
+}
+
+function formatYear(value: string) {
+  return new Date(value).getFullYear().toString();
+}
+
+function formatPeriod(startedAt: string | null, endedAt: string | null) {
+  const start = startedAt ? formatYear(startedAt) : 'Now';
+  const end = endedAt ? formatYear(endedAt) : 'Present';
+
+  return `${start}-${end}`;
 }
 
 export default App

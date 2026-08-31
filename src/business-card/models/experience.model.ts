@@ -15,7 +15,7 @@ export class Experience {
   startedAt: Date;
 
   @Field(() => Date, { nullable: true })
-  finishedAt?: Date | null;
+  endedAt?: Date | null;
 
   @Field()
   description: string;

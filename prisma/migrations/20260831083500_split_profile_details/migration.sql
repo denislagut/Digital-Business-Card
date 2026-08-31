@@ -1,19 +1,19 @@
 -- CreateEnum
-CREATE TYPE "SkillLevel_new" AS ENUM ('FAMILIAR', 'PRACTICAL', 'PROFICIENT');
+CREATE TYPE "SkillUsageLevel" AS ENUM ('FAMILIAR', 'PRACTICAL', 'PROFICIENT');
 
 -- Map the old self-assessment enum to the new practical-usage enum.
-ALTER TABLE "Skill" ALTER COLUMN "level" TYPE STRING;
+ALTER TABLE "Skill" ADD COLUMN "level_new" "SkillUsageLevel";
 UPDATE "Skill"
-SET "level" = CASE "level"
-    WHEN 'BEGINNER' THEN 'FAMILIAR'
-    WHEN 'JUNIOR' THEN 'PRACTICAL'
-    WHEN 'JUNIOR_PLUS' THEN 'PRACTICAL'
-    WHEN 'MIDDLE' THEN 'PROFICIENT'
-    ELSE 'FAMILIAR'
+SET "level_new" = CASE "level"::STRING
+    WHEN 'BEGINNER' THEN 'FAMILIAR'::"SkillUsageLevel"
+    WHEN 'JUNIOR' THEN 'PRACTICAL'::"SkillUsageLevel"
+    WHEN 'JUNIOR_PLUS' THEN 'PRACTICAL'::"SkillUsageLevel"
+    WHEN 'MIDDLE' THEN 'PROFICIENT'::"SkillUsageLevel"
+    ELSE 'FAMILIAR'::"SkillUsageLevel"
 END;
-DROP TYPE "SkillLevel";
-ALTER TYPE "SkillLevel_new" RENAME TO "SkillLevel";
-ALTER TABLE "Skill" ALTER COLUMN "level" TYPE "SkillLevel" USING "level"::"SkillLevel";
+ALTER TABLE "Skill" ALTER COLUMN "level_new" SET NOT NULL;
+ALTER TABLE "Skill" DROP COLUMN "level";
+ALTER TABLE "Skill" RENAME COLUMN "level_new" TO "level";
 
 -- CreateTable
 CREATE TABLE "Education" (

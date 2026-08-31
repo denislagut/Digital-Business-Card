@@ -3,7 +3,7 @@ POST http://localhost:3000/graphql
 Content-Type: application/json
 
 {
-  "query": "query Profile { profile { fullName headline location summary githubUrl skills { name category level years } projects { title description stack highlights } experiences { company role startedAt finishedAt description stack } educations { institution degree field startedAt finishedAt description } certifications { title issuer issuedAt credentialUrl description } } }"
+  "query": "query Profile { profile { fullName headline location summary githubUrl skills { name category level } projects { title description stack highlights } experiences { company role startedAt endedAt description stack } educations { institution degree field startedAt endedAt description } certifications { title issuer issuedAt credentialUrl assetUrl description } } }"
 }
 
 ### Skill filter
@@ -11,7 +11,7 @@ POST http://localhost:3000/graphql
 Content-Type: application/json
 
 {
-  "query": "query Skills($category: String) { skills(category: $category) { name category level years } }",
+  "query": "query Skills($category: String) { skills(category: $category) { name category level } }",
   "variables": {
     "category": "Backend"
   }

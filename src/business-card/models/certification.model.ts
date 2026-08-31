@@ -18,5 +18,8 @@ export class Certification {
   credentialUrl?: string | null;
 
   @Field(() => String, { nullable: true })
+  assetUrl?: string | null;
+
+  @Field(() => String, { nullable: true })
   description?: string | null;
 }

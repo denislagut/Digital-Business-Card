@@ -18,7 +18,7 @@ export class Education {
   startedAt?: Date | null;
 
   @Field(() => Date, { nullable: true })
-  finishedAt?: Date | null;
+  endedAt?: Date | null;
 
   @Field(() => String, { nullable: true })
   description?: string | null;

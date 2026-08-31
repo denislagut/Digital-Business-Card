@@ -56,7 +56,7 @@ model Experience {
   company     String
   role        String
   startedAt   DateTime
-  finishedAt  DateTime?
+  endedAt     DateTime?
   description String
   stack       String[]
   profileId   String
@@ -69,7 +69,7 @@ model Education {
   degree      String
   field       String
   startedAt   DateTime?
-  finishedAt  DateTime?
+  endedAt     DateTime?
   description String?
   profileId   String
   profile     Profile   @relation(fields: [profileId], references: [id], onDelete: Cascade)
@@ -81,6 +81,7 @@ model Certification {
   issuer        String
   issuedAt      DateTime?
   credentialUrl String?
+  assetUrl      String?
   description   String?
   profileId     String
   profile       Profile   @relation(fields: [profileId], references: [id], onDelete: Cascade)
@@ -90,4 +91,6 @@ enum SkillLevel {
   FAMILIAR
   PRACTICAL
   PROFICIENT
+
+  @@map("SkillUsageLevel")
 }
