@@ -12,6 +12,7 @@ type Project = {
   description: string;
   stack: string[];
   highlights: string[];
+  sourceUrl: string;
 };
 
 type Experience = {
@@ -89,6 +90,7 @@ function App() {
                     description
                     stack
                     highlights
+                    sourceUrl
                   }
                   experiences {
                     company
@@ -206,6 +208,11 @@ function App() {
             <article className="card" key={project.title}>
               <h3>{project.title}</h3>
               <p>{project.description}</p>
+              {project.sourceUrl && (
+                <a href={project.sourceUrl} target="_blank" rel="noreferrer">
+                  GitHub
+                </a>
+              )}
               <ul className="highlights">
                 {project.highlights.map((highlight) => (
                   <li key={highlight}>{highlight}</li>

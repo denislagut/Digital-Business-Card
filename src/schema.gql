@@ -90,6 +90,7 @@ type Skill {
   id: ID!
   level: SkillLevel!
   name: String!
+  years: Float
 }
 
 enum SkillLevel {
